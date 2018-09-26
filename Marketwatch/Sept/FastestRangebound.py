@@ -7,7 +7,13 @@ import xlwings as xw
 import time
 #App = xw.App()
 
-sht = xw.Book(r'C:\Users\admin\Documents\GitHub\RemotePC-CC\Marketwatch\Sept\currencies.xlsx').sheets[0]
+#sht = xw.Book(r'C:\Users\admin\Documents\GitHub\RemotePC-CC\Marketwatch\Sept\currencies.xlsx').sheets[0]
+
+Options =
+Indices = 
+Equities =
+Currencies =
+
 SAVED = xw.Book(r'C:\Users\admin\Documents\GitHub\RemotePC-CC\Marketwatch\Sept\Book_26_9_data.xlsx').sheets[0]
 
 #wrt = xw.books('Book1').sheets[0]
