@@ -1,31 +1,21 @@
 from xlwings import Book, Sheet, Range, Chart
 import threading
+from multiprocessing import Process
 import xlwings as xw 
 import time
 
-"""
-def Options():
 
-def Nifty50():
-
-def BankNifty():
-
-def Currencies():
-"""
-
-#Nifty50MW.xlsx
-#Nifty50MW.xlsx
-#Optionswatch.xlsx
 
 from xlwings import Book, Sheet, Range, Chart
 import xlwings as xw
 import time
 
-def Writer_function(inputfile,size):
+def Writer_function(inputfile,size,outputfile):
 
     sht = xw.Book(r'C:\\Users\\Yash\Documents\Datafeeds\\'+inputfile).sheets[0]
     Sheet = xw.Book(r'C:\\Users\\Yash\Documents\Datafeeds\\'+inputfile).sheets[1]
     wrt = Sheet
+    txt = open(outputfile,'w')
     i = 1
 
     wrt.range('A1').value = sht.range('A1').value
@@ -46,23 +36,39 @@ def Writer_function(inputfile,size):
         s1 = time.time()
         String1 = str(sht.range('A2:M'+str(size)).value)
         e1 = time.time()
-        print("Time S1:"+str(e1-s1))
+      #  print("Time S1:"+str(e1-s1))
         s2x = time.time()
         s2 = time.time()
         String2 = str(sht.range('A2:M'+str(size)).value)
         e2 = time.time()
-        print("Time S2:"+str(e2-s2))
+     #   print("Time S2:"+str(e2-s2))
         #String1 = String1 + str(sht.range('A'+str(x)+':'+'M'+str(x)).value)
         
     #  print(len(String1))
     #  print(String1)
-        print(s2-s2x)
+      #  print(s2-s2x)
         if String1==String2:
             continue    
         else:
-            wrt.range('A'+str(i+1)).value = String2          
+     #       wrt.range('A'+str(i+1)).value = String2          
+            txt.writelines(String2)
             i=i+1
-            print("Comp time: " +str(CompE-CompS))
+       #     print("Comp time: " +str(CompE-CompS))
 
-Writer_function("Nifty50.xlsx",100)
 
+if __name__=="__main__":
+        
+    p1 = Process(target=Writer_function, args=("Nifty50.xlsx",50))
+    p2 = Process(target=Writer_function, args=("Currency.xlsx",26))
+    p3 = Process(target=Writer_function,args=("BankNifty.xlsx",12))
+    p4 = Process(target=Writer_function,args=("Options.xlsx",50))
+    p5 = Process(target=Writer_function,args=("optionsnextexpiry.xlsx",51))
+    p6 = Process(target=Writer_function,args=("Commodities.xlsx",51,"Outputfile.csv"))
+
+
+    #p1.start()
+    p6.start()
+    #p3.start()
+   # p4.start()
+   # p5.start()
+    
