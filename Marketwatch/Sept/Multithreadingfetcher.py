@@ -23,8 +23,8 @@ import time
 
 def Writer_function(inputfile,size):
 
-    sht = xw.Book(r'C:\\Users\\admin\Documents\Datafeeds\\'+inputfile).sheets[0]
-    Sheet = xw.Book(r'C:\\Users\\admin\Documents\Datafeeds\\'+inputfile).sheets[1]
+    sht = xw.Book(r'C:\\Users\\Yash\Documents\Datafeeds\\'+inputfile).sheets[0]
+    Sheet = xw.Book(r'C:\\Users\\Yash\Documents\Datafeeds\\'+inputfile).sheets[1]
     wrt = Sheet
     i = 1
 
