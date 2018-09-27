@@ -10,11 +10,12 @@ from xlwings import Book, Sheet, Range, Chart
 import xlwings as xw
 import time
 
-def Writer_function(inputfile,size):
+def Writer_function(inputfile,size,outputfile):
 
     sht = xw.Book(r'C:\\Users\\admin\Documents\Datafeeds\\'+inputfile).sheets[0]
     Sheet = xw.Book(r'C:\\Users\\admin\Documents\Datafeeds\\'+inputfile).sheets[1]
     wrt = Sheet
+    txt = open(outputfile,'w')
     i = 1
 
     wrt.range('A1').value = sht.range('A1').value
@@ -49,22 +50,25 @@ def Writer_function(inputfile,size):
         if String1==String2:
             continue    
         else:
-            wrt.range('A'+str(i+1)).value = String2          
+     #       wrt.range('A'+str(i+1)).value = String2          
+            txt.writelines(String2)
             i=i+1
        #     print("Comp time: " +str(CompE-CompS))
 
 
 if __name__=="__main__":
         
-    p1 = Process(target=Writer_function, args=("Nifty50.xlsx",10))
-    p2 = Process(target=Writer_function, args=("Currency.xlsx",10))
-    p3 = Process(target=Writer_function,args=("BankNifty.xlsx",10))
-    p4 = Process(target=Writer_function,args=("Options.xlsx",10))
-    p5 = Process(target=Writer_function,args=("optionsnextexpiry.xlsx",10))
+    p1 = Process(target=Writer_function, args=("Nifty50.xlsx",50))
+    p2 = Process(target=Writer_function, args=("Currency.xlsx",26))
+    p3 = Process(target=Writer_function,args=("BankNifty.xlsx",12))
+    p4 = Process(target=Writer_function,args=("Options.xlsx",50))
+    p5 = Process(target=Writer_function,args=("optionsnextexpiry.xlsx",51))
+    p6 = Process(target=Writer_function,args=("Commodities.xlsx",51,"Outputfile.csv"))
 
-    p1.start()
-    p2.start()
-    p3.start()
-    p4.start()
-    p5.start()
+
+    #p1.start()
+    p6.start()
+    #p3.start()
+   # p4.start()
+   # p5.start()
     
